@@ -5,5 +5,4 @@ count = 0
 for i in exchage:
     count += a // i
     a = a % i
-
 print(count)
