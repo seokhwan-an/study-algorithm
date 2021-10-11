@@ -1,4 +1,4 @@
-# 단순하게 푸는 법
+# 내가 푼 풀이
 N, M, K = map(int, input().split())
 arr = list(map(int,input().split()))
 arr.sort(reverse=True)
@@ -8,7 +8,7 @@ term = first*K + second
 answer = (M//(K+1))*term + (M%(K+1))*first
 print(answer)
 
-# 간략하게 푸는 법
+# 책에서 설명해주는 간략하게 푸는 법(시간복잡도 낮게)
 N, M, K = map(int, input().split())
 arr = list(map(int,input().split()))
 arr.sort(reverse=True)
