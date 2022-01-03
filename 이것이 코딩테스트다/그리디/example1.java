@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class example1 {
+    //큰 수의 법칙
     public static void main(String[] args){
-        //큰 수의 법칙
         Scanner sc = new Scanner(System.in);
         int answer = 0;
         int N = sc.nextInt();
