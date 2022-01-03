@@ -1,20 +1,18 @@
 n = int(input())
-arr = list(input().split())
-x, y = 1, 1
+move = list(input().split())
+x,y = 1,1
+dx = [0,0,-1,1]
+dy = [-1,1,0,0]
+method = ["L","R","U","D"]
+for i in move:
+    nx = x + dx[method.index(i)]
+    ny = y + dy[method.index(i)]
+    if nx < 1 or nx > n:
+        continue
+    elif ny < 1 or ny > n:
+        continue
+    else:
+        x = nx
+        y = ny
 
-move_x = [0,0,-1,1]
-move_y = [-1,1,0,0]
-mode = ['L','R','U','D']
-
-for i in arr:
-    x += move_x[mode.index(i)]
-    y += move_y[mode.index(i)]
-    if x == 0:
-        x = 1
-    elif x == (n+1):
-        x = n
-    if y == 0:
-        y = 1
-    elif y == (n+1):
-        y = n
 print(x,y)
