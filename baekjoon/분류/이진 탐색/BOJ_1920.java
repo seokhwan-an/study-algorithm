@@ -5,6 +5,23 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1920 {
+    public static int binary_search(int[] arr, int num){
+        int s = 0;
+        int e = arr.length -1;
+        while(s <= e){
+            int mid = (s + e)/2;
+            if(arr[mid] > num) {
+                e = mid - 1;
+            }
+            else if (arr[mid] == num){
+                return 1;
+            }
+            else if (arr[mid] < num){
+                s = mid + 1;
+            }
+        }
+        return 0;
+    }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -16,38 +33,13 @@ public class BOJ_1920 {
         }
         Arrays.sort(num_arr);
         int M = Integer.parseInt(br.readLine());
+        int[] check = new int[M];
         st = new StringTokenizer(br.readLine());
-        int s, e =0;
         for(int i = 0; i < M; i++){
-            int check = Integer.parseInt(st.nextToken());
-            boolean answer = false;
-            if(num_arr[N-1] < 0){
-                s = num_arr[N-1];
-                e = 1;
-            }
-            else{
-                s = 1;
-                e = num_arr[N-1];
-            }
-            while(s <= e){
-                int mid = (s + e)/2;
-                if(mid > check){
-                    e = mid -1;
-                }
-                else if(mid == check){
-                    answer = true;
-                    break;
-                }
-                else{
-                    s = mid + 1;
-                }
-            }
-            if(answer){
-                System.out.println(1);
-            }
-            else{
-                System.out.println(0);
-            }
+            check[i] = Integer.parseInt(st.nextToken());
+        }
+        for(int i = 0; i < M; i++){
+            System.out.println(binary_search(num_arr,check[i]));
         }
     }
 }
