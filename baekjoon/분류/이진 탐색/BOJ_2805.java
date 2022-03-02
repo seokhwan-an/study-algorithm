@@ -5,26 +5,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2805 {
-    public static int binary_search(int[] tree, int need){
-        int s = 0;
-        int e = tree[tree.length-1];
-        while(s <= e){
-            int mid = (s + e)/2;
-            int check = 0;
-            for(int i = 0; i < tree.length; i++){
-                if(tree[i] >= mid) {
-                    check += tree[i] - mid;
-                }
-            }
-            if(check >= need){
-                s = mid + 1;
-            }
-            else if(check < need){
-                e = mid -  1;
-            }
-        }
-        return e;
-    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -37,6 +18,25 @@ public class BOJ_2805 {
             tree[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(tree);
-        System.out.println(binary_search(tree,M));
+        int s = 1;
+        int e = tree[N-1];
+        long answer = 0;
+        while (s <= e){
+            long check = 0;
+            int mid = (s + e)/2;
+            for(int length : tree){
+                if(length >= mid){
+                    check += length - mid;
+                }
+            }
+            if(check >= M){
+                answer = Math.max(answer,mid);
+                s = mid + 1;
+            }
+            else if(check < M){
+                e = mid -1;
+            }
+        }
+        System.out.println(answer);
     }
 }
