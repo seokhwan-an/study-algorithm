@@ -25,7 +25,7 @@ public class BOJ_11725 {
                 if(graph[i][0] == 1){
                     arr[graph[i][1]] = 1;
                 }
-                if(graph[i][1] != 1 && graph[i][0] != 1){
+                if(graph[i][1] != 1 && graph[i][0] != 1 && arr[graph[i][1]] == -1){
                     arr[graph[i][1]] = graph[i][0];
                 }
             }
