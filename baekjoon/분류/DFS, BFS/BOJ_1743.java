@@ -28,19 +28,19 @@ public class BOJ_1743 {
         Queue<int[]> q = new LinkedList<>();
         for(int i = 0; i < N; i++){
             for(int j = 0; j < M; j++){
-                if(map[i][j] == 1 && !visited[i][j]){
+                if(map[i][j] == 1 && visited[i][j]==false){
                     check++;
                     q.offer(new int[]{i, j});
                     visited[i][j] = true;
                     while(!q.isEmpty()){
                         int[] y = q.poll();
                         for(int k = 0; k < 4; k++){
-                            int nx = y[0] + mx[i];
-                            int ny = y[1] + my[i];
+                            int nx = y[0] + mx[k];
+                            int ny = y[1] + my[k];
                             if(nx < 0 || nx >= N || ny < 0 || ny >= M){
                                 continue;
                             }
-                            if(map[nx][ny] == 1 && !visited[nx][ny]){
+                            if(map[nx][ny] == 1 && visited[nx][ny] == false){
                                 check++;
                                 visited[nx][ny] = true;
                                 q.offer(new int[]{nx,ny});
@@ -48,8 +48,8 @@ public class BOJ_1743 {
                         }
                     }
                     answer = Math.max(answer, check);
+                    check = 0;
                 }
-                check = 0;
             }
         }
         System.out.println(answer);
