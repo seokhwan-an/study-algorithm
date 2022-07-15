@@ -1,70 +1,59 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class BOJ_5430 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int T = Integer.parseInt(br.readLine());
-        String[] answers = new String[T];
-        for(int i = 0; i < T; i++){
+        for (int i = 0; i < T; i++) {
             String infos = br.readLine();
             int n = Integer.parseInt(br.readLine());
-            ArrayList<Integer> num_arr = new ArrayList<>();
+            Deque<Integer> num_arr = new ArrayDeque<>();
             String num = br.readLine();
-            String num_add = "";
-            for(String str : num.substring(1,num.length()-1).split(",")){
-                if(!str.equals("")){
-                    num_arr.add(Integer.parseInt(str));
+            String[] numbers = num.substring(1, num.length() - 1).split(",");
+            for (String nums : numbers) {
+                if (!nums.equals("")) {
+                    num_arr.add(Integer.parseInt(nums));
                 }
             }
             boolean check = true;
             boolean reverse = false;
-            for(char info : infos.toCharArray()){
-                if(info == 'R'){
+            for (char info : infos.toCharArray()) {
+                if (info == 'R') {
                     reverse = !reverse;
-                }
-                else{
-                    if(num_arr.size() == 0){
+                } else {
+                    if (num_arr.size() == 0) {
                         check = false;
                         break;
                     }
-                    if(reverse){
-                        num_arr.remove(num_arr.size()-1);
-                    }
-                    else{
-                        num_arr.remove(0);
+                    if (reverse) {
+                        num_arr.pollLast();
+                    } else {
+                        num_arr.pollFirst();
                     }
                 }
             }
-            answers[i] = ac(num_arr,check,reverse);
-        }
-        for(String answer : answers){
-            System.out.println(answer);
-        }
-    }
-
-    static String ac(ArrayList<Integer> num_arr, boolean check, boolean reverse) {
-        String answer = "[";
-        if (check == true) {
-            while (!num_arr.isEmpty()) {
-                if (reverse == true) {
-                    answer += num_arr.get(num_arr.size() - 1);
-                    num_arr.remove(num_arr.size() - 1);
-                } else {
-                    answer += num_arr.get(0);
-                    num_arr.remove(0);
+            if (check == true) {
+                sb.append("[");
+                while (!num_arr.isEmpty()) {
+                    if (reverse == true) {
+                        sb.append(num_arr.pollLast());
+                    } else {
+                        sb.append(num_arr.pollFirst());
+                    }
+                    if (num_arr.size() != 0) {
+                        sb.append(",");
+                    }
                 }
-                if (num_arr.size() != 0) {
-                    answer += ",";
-                }
+                sb.append("]\n");
+            } else {
+                sb.append("error\n");
             }
-            answer += "]";
         }
-        else {
-            answer = "error";
-        }
-        return answer;
+        System.out.println(sb);
     }
 }
