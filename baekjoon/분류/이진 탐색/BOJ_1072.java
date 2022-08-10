@@ -14,6 +14,7 @@ public class BOJ_1072 {
 
         long left = 0, right = x, mid = 0;
         int next = 0;
+        long answer = 0;
         if (z >= 99) {
             System.out.println(-1);
         } else {
@@ -21,12 +22,13 @@ public class BOJ_1072 {
                 mid = (left + right) / 2;
                 next = win_rate(x + mid, y + mid);
                 if (next > z) {
+                    answer = mid;
                     right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
             }
-            System.out.println(left);
+            System.out.println(answer);
         }
     }
 
