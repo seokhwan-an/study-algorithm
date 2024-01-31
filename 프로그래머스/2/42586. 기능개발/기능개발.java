@@ -38,13 +38,8 @@ class Solution {
     }
     
     private int[] changeToArray(List<Integer> answer) {
-        int[] array = new int[answer.size()];
-        
-        for (int i = 0; i < answer.size(); i++) {    
-            array[i] = answer.get(i);
-        }
-        
-        return array;
-
+        return answer.stream()
+            .mapToInt(Integer::intValue)
+            .toArray();
     }
 }
