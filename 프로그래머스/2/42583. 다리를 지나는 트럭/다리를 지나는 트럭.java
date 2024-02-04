@@ -32,9 +32,7 @@ class Solution {
                     roadWeight -= complitTruck;
                 }
                 answer++;
-            } 
-            // 트럭이 이미 다리에 올라간 경우
-            else {
+            } else {
                 answer += bridge_length;
                 break;
             }
