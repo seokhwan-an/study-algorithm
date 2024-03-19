@@ -40,7 +40,7 @@ class Solution {
             }
         }
         
-        Collections.sort(numbers, Collections.reverseOrder());
+        Collections.sort(numbers, (n1, n2) -> n2.compareTo(n1));
         
         if (numbers.size() == 0) {
             return "-1";
