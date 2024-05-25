@@ -1,0 +1,7 @@
+-- 코드를 작성해주세요
+SELECT route, 
+CONCAT(ROUND(SUM(D_BETWEEN_DIST),1), 'km') total_distance, 
+CONCAT(ROUND(AVG(D_BETWEEN_DIST),2), 'km') average_distance
+FROM SUBWAY_DISTANCE
+GROUP BY route
+ORDER BY SUM(D_BETWEEN_DIST) DESC
