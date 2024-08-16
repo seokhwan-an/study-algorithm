@@ -1,4 +1,3 @@
--- 코드를 입력하세요
 SELECT ins.name, ins.datetime
 FROM animal_ins ins
 LEFT JOIN animal_outs outs on ins.animal_id = outs.animal_id
