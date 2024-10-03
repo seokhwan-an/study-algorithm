@@ -1,38 +1,47 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        long[] arr = new long[N];
-        for(int i = 0; i < N; i++){
-            arr[i] = Integer.parseInt(br.readLine());
+        String[] input= br.readLine().split(" ");
+
+        int K = Integer.parseInt(input[0]);
+        int N = Integer.parseInt(input[1]);
+
+        int max = Integer.MIN_VALUE;
+
+        int[] lan = new int[K];
+
+        for (int i = 0; i < K; i++) {
+            int lanLength = Integer.parseInt(br.readLine());
+            if (lanLength > max) {
+                max = lanLength;
+            }
+            lan[i] = lanLength;
         }
-        Arrays.sort(arr);
-        long s = 1, e = arr[N-1];
-        long answer = 0;
-        while(s <= e){
-            long mid = (s + e)/2;
-            int cnt = 0;
-            for(int i = 0; i < N; i++){
-                if(arr[i] >= mid){
-                    cnt += arr[i] / mid;
-                }
+
+        Arrays.sort(lan);
+        long start = 1;
+        long end = max;
+        while (start <= end) {
+            long cnt = 0;
+            long mid = (start + end) / 2;
+
+            for (int i = 0; i < K; i++) {
+                cnt += lan[i] / mid;
             }
-            if(cnt >= M){
-                s = mid + 1;
-                answer = Math.max(answer, mid);
-            }
-            else{
-                e = mid - 1;
+
+            if (cnt >= N) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
             }
         }
-        System.out.println(answer);
+
+        System.out.println(end);
     }
 }
