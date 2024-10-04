@@ -1,35 +1,50 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
     static int N;
-    static int M;
-    static int arr[] = new int[9];
-    static boolean[] visited = new boolean[9];
+    static int[] map;
+    static int[] check;
+    static boolean[] visited;
+    static StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        N = sc.nextInt();
-        M = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] input = br.readLine().split(" ");
 
-        solution(0);
+        N = Integer.parseInt(input[0]);
+        int M = Integer.parseInt(input[1]);
+
+        map = new int[N];
+        check = new int[M];
+        visited = new boolean[N];
+
+
+        for (int i = 0; i < N; i++) {
+            map[i] = i + 1;
+        }
+        getAnswer(M, 0);
+
+        System.out.println(sb.toString());
     }
 
-    private static void solution(int k) {
-        if (k == M) {
+    private static void getAnswer(int n, int k) {
+        if (n == k) {
             for (int i = 0; i < k; i++) {
-                System.out.print(arr[i] + " ");
+                sb.append(check[i]).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
+
             return;
         }
 
-        for (int i = 1; i <= N; i++) {
+        for (int i = 0; i < N; i++) {
             if (!visited[i]) {
-                arr[k] = i;
                 visited[i] = true;
-                solution(k + 1);
+                check[k] = map[i];
+                getAnswer(n, k + 1);
                 visited[i] = false;
             }
         }
