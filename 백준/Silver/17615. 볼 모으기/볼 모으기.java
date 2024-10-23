@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -11,10 +9,10 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
         String[] input = br.readLine().split("");
-        List<Integer> redCnt = new ArrayList<>();
-        List<Integer> blueCnt = new ArrayList<>();
 
         int cnt = 0;
+        int redRightCnt = 0;
+        int blueRightCnt = 0;
         String pre = "";
         for (String type : input) {
             if (pre.equals("")) {
@@ -25,9 +23,35 @@ public class Main {
 
             if (!pre.equals(type)) {
                 if (pre.equals("R")) {
-                    redCnt.add(cnt);
+                    redRightCnt += cnt;
                 } else {
-                    blueCnt.add(cnt);
+                    blueRightCnt += cnt;
+                }
+                pre = type;
+                cnt = 1;
+                continue;
+            }
+            cnt++;
+        }
+        int rightMin = Math.min(redRightCnt, blueRightCnt);
+
+        cnt = 0;
+        int redLeftCnt = 0;
+        int blueLeftCnt = 0;
+        pre = "";
+        for (int i = input.length - 1; i >= 0; i--) {
+            String type = input[i];
+            if (pre.equals("")) {
+                cnt++;
+                pre = type;
+                continue;
+            }
+
+            if (!pre.equals(type)) {
+                if (pre.equals("R")) {
+                    redLeftCnt += cnt;
+                } else {
+                    blueLeftCnt += cnt;
                 }
                 pre = type;
                 cnt = 1;
@@ -36,18 +60,8 @@ public class Main {
             cnt++;
         }
 
-        int totalRed = sum(redCnt);
-        int totalBlue = sum(blueCnt);
+        int leftMin = Math.min(redLeftCnt, blueLeftCnt);
 
-        System.out.println(Math.min(totalRed, totalBlue));
-    }
-
-    private static int sum(List<Integer> cnt) {
-        int result = 0;
-        for (int number : cnt) {
-            result += number;
-        }
-
-        return result;
+        System.out.println(Math.min(rightMin, leftMin));
     }
 }

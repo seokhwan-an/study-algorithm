@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 14168 KB, 시간: 104 ms
+메모리: 51132 KB, 시간: 396 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2024년 10월 23일 10:18:55
+2024년 10월 23일 10:38:52
 
 ### 문제 설명
 
@@ -25,7 +25,7 @@
 
 <p>예를 들어, 처음에 볼이 <그림 1>에서 보인 것처럼 있을 때, 빨간 볼을 <그림 2>에서 보인 것처럼 옮긴 후, <그림 3>에서 보인 것처럼 옮긴다면 두 번 만에 같은 색끼리 모을 수 있다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 447px; height: 67px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/347db7e2-5704-4a28-ab85-682bf30f3816/-/crop/894x133/0,0/-/preview/" style="width: 447px; height: 67px;"></p>
 
 <p style="text-align: center;"><그림 1></p>
 
