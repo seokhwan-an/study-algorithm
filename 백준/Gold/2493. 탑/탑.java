@@ -5,16 +5,6 @@ import java.util.Stack;
 
 public class Main {
 
-    static class Tower {
-        int index;
-        int height;
-
-        public Tower(int index, int height) {
-            this.index = index;
-            this.height = height;
-        }
-
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,35 +12,27 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         String[] inputs = br.readLine().split(" ");
 
-        StringBuilder sb = new StringBuilder();
-        Stack<Tower> stack = new Stack<>();
-
+        int[] towers = new int[N];
         for (int i = 0; i < N; i++) {
-            int towerHeight = Integer.parseInt(inputs[i]);
-            if (stack.isEmpty()) {
-                sb.append(0).append(" ");
-                stack.push(new Tower(i, towerHeight));
-            } else {
-                while (true) {
-                    if (stack.isEmpty()) {
-                        sb.append("0").append(" ");
-                        stack.push(new Tower(i, towerHeight));
-                        break;
-                    }
-
-                    Tower top = stack.peek();
-
-                    if (top.height > towerHeight) {
-                        sb.append(top.index + 1).append(" ");
-                        stack.push(new Tower(i, towerHeight));
-                        break;
-                    } else {
-                        stack.pop();
-                    }
-                }
-            }
+            towers[i] = Integer.parseInt(inputs[i]);
         }
 
-        System.out.println(sb);
+        Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            while(!stack.isEmpty() && towers[stack.peek()] <= towers[i]) {
+                stack.pop();
+            }
+
+            if (stack.isEmpty()) {
+                sb.append(0).append(" ");
+            } else {
+                sb.append(stack.peek() + 1).append(" ");
+            }
+
+            stack.push(i);
+        }
+
+        System.out.println(sb.toString());
     }
 }
