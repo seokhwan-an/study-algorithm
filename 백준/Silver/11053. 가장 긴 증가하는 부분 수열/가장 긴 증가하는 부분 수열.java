@@ -6,32 +6,27 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
-        int n = Integer.parseInt(br.readLine());
-        int[] numbers = new int[n];
-
-        String[] inputs = br.readLine().split(" ");
-
-        for (int i = 0; i < n; i++) {
-            numbers[i] = Integer.parseInt(inputs[i]);
+        String[] input = br.readLine().split(" ");
+        int[] numbers = new int[N + 1];
+        for (int i = 1; i <= N; i++) {
+            numbers[i] = Integer.parseInt(input[i - 1]);
         }
-
-        int[] dp = new int[n];
-
-        for (int i = 0; i < n; i++) {
+        int answer = 0;
+        int[] dp = new int[N + 1];
+        for (int i = 1; i <= N; i++) {
             dp[i] = 1;
-
-            for (int j = 0; j < i; j++) {
-                if (numbers[j] < numbers[i] && dp[i] < dp[j] + 1) {
-                    dp[i] = dp[j] + 1;
+            int max = 0;
+            for (int j = 1; j < i; j++) {
+                if (numbers[i] > numbers[j]) {
+                    if (dp[j] > max) {
+                        max = dp[j];
+                    }
                 }
             }
-        }
-
-        int answer = 0;
-
-        for (int i = 0; i < n; i++) {
-            answer = Math.max(dp[i], answer);
+            dp[i] = max + 1;
+            answer = Math.max(answer, dp[i]);
         }
 
         System.out.println(answer);
