@@ -35,23 +35,20 @@ public class Main {
     }
 
     private static List<Integer> getPrimeNumbers(int N) {
+        boolean[] isPrime = new boolean[N + 1];
+        for (int i = 2; i <= Math.sqrt(N); i++) {
+            if (!isPrime[i]) {
+                for (int j = i * 2; j <= N; j += i) {
+                    isPrime[j] = true;
+                }
+            }
+        }
         List<Integer> primeNumbers = new ArrayList<>();
         for (int i = 2; i <= N; i++) {
-            if (isPrime(i)) {
+            if (!isPrime[i]) {
                 primeNumbers.add(i);
             }
         }
-
         return primeNumbers;
-    }
-
-    private static boolean isPrime(int N) {
-        for (int i = 2; i <= Math.sqrt(N); i++) {
-            if (N % i == 0) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
