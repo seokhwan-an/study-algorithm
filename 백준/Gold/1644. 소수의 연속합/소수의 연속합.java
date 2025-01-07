@@ -10,36 +10,24 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        if (N == 1) {
-            System.out.println(0);
-            return;
-        }
         List<Integer> primeNumbers = getPrimeNumbers(N);
+
         int answer = 0;
-
         int start = 0;
-        int end = 1;
+        int end = 0;
+        int sum = 0;
 
-        // 초기 작업
-        int sum = primeNumbers.get(start);
-        if (sum == N) {
-            answer += 1;
-            System.out.println(answer);
-            return;
-        }
-        sum += primeNumbers.get(end);
-
-        while (start <= end && end < primeNumbers.size()) {
-            if (sum <= N) {
-                if (sum == N) {
-                    answer += 1;
-                }
-                end++;
-                if (end < primeNumbers.size()) {
-                    sum += primeNumbers.get(end);
-                }
-            } else {
+        while (true) {
+            if (sum == N) {
+                answer += 1;
                 sum -= primeNumbers.get(start++);
+            } else if (sum > N) {
+                sum -= primeNumbers.get(start++);
+            } else {
+               if (end >= primeNumbers.size()) {
+                   break;
+               }
+               sum += primeNumbers.get(end++);
             }
         }
 
