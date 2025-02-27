@@ -29,10 +29,9 @@ def solution(board, moves):
         if len(pick) == 0:
             pick.append(doll)
         else:   
-            picked_doll = pick.pop()
-            if doll == picked_doll:
+            if doll == pick[-1]:
+                pick.pop()
                 answer += 2
             else:
-                pick.append(picked_doll)
                 pick.append(doll)       
     return answer
