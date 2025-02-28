@@ -21,10 +21,10 @@ def solution(lines):
 
 def find_log_count(time, logs):
     start = time
-    end = time + 1000
+    end = time + 999
     count = 0
     for log in logs:
-        if start <= log[1] and log[0] < end:
+        if start <= log[1] and log[0] <= end:
             count += 1
     
     return count
