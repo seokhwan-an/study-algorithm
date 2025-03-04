@@ -1,10 +1,10 @@
 # [level 2] [1차] 뉴스 클러스터링 - 17677 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17677) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17677?language=python3) 
 
 ### 성능 요약
 
-메모리: 73.3 MB, 시간: 2.56 ms
+메모리: 10.3 MB, 시간: 1.42 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 12월 5일 20:53:17
+2025년 03월 04일 16:07:40
 
 ### 문제 설명
 
