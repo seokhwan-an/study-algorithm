@@ -8,24 +8,17 @@ def solution(msg):
     startIndex = 0
     lastNumber = 27
     while startIndex < len(msg):
-        string = msg[startIndex]
-        
+        string = ""
         notFind = False
-        # 사전이 있는 가장 긴 문자열 찾기
-        for i in range(startIndex + 1, len(msg)):
+        for i in range(startIndex, len(msg)):
             string += msg[i]
             if string not in lzw:
-                startIndex = i
                 notFind = True
+                startIndex = i
                 break
-            
-        
         if notFind:
             lzw[string] = lastNumber
             lastNumber += 1
-            answer.append(lzw[string[:-1]])
-        else:
-            answer.append(lzw[string])
-            startIndex = len(msg)
-            
+        answer.append(lzw[string[:-1]])
+        
     return answer
