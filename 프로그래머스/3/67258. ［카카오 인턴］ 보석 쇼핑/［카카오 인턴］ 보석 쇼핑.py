@@ -6,49 +6,32 @@
 
 def solution(gems):
     answer = []
+    size = len(set(gems))
     
-    if len(gems) == 1:
-        return [1, 1]
-    # 모든 보석 정보 넣기
-    gemCheck = set(gems)
-    gemDic = {}
-    start = 0
-    end = 1
+    # 초기 설정
+    gemDic = {gems[0] : 1}
+    start, end = 0, 0
     
-    gemDic[gems[start]] = 1
-    if len(gemDic.keys()) == len(gemCheck):
-        answer.append([1, 1])
-    
-    # 투포인터
-    # gemDic.keys() < gemCheck 길이 현재 end 추가하고 end + 1
-    # gemDic.keys() == gemCheck 길이 현재 start를 빼고 start + 1
     while start <= end and end < len(gems):
-        if len(gemDic.keys()) == len(gemCheck):
-            answer.append([start + 1, end])
+        # 모두 포함되어 있으면 answer에 값 추가
+        if len(gemDic) == size:
+            answer.append([start + 1, end + 1])
             gem = gems[start]
-            if gemDic[gem] == 1:
-                gemDic.pop(gem)
-            else:
+            if gemDic[gem] > 1:
                 gemDic[gem] -= 1
+            else:
+                gemDic.pop(gem)
             start += 1
+        elif len(gemDic) < size:
+            end += 1
+            if end >= len(gems):
+                break
             
-        elif len(gemDic.keys()) < len(gemCheck):
             gem = gems[end]
             if gem in gemDic:
                 gemDic[gem] += 1
             else:
                 gemDic[gem] = 1
-            end += 1
-            
-    while len(gemDic.keys()) == len(gemCheck) and start <= end:
-        if len(gemDic.keys()) == len(gemCheck):
-            answer.append([start + 1, end])
-            gem = gems[start]
-            if gemDic[gem] == 1:
-                gemDic.pop(gem)
-            else:
-                gemDic[gem] -= 1
-            start += 1
         
     answer = sorted(answer, key = lambda x : (x[1] - x[0], x[0]))      
     
