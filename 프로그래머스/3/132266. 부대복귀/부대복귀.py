@@ -43,7 +43,7 @@ def dajistra(des, graph, n):
     distances[des] = 0
     
     q = deque()
-    q.append([des, 0])
+    q.append((des, 0))
     
     while q:
         des, dis = q.popleft()
@@ -58,7 +58,7 @@ def dajistra(des, graph, n):
             distance = dis + 1
             if distance < distances[n]:
                 distances[n] = distance
-                q.append([n, distance])
+                q.append((n, distance))
             
     
     return distances
