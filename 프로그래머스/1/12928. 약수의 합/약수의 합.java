@@ -1,30 +1,21 @@
-import java.util.*;
-
 class Solution {
     public int solution(int n) {
-        Set<Integer> divisors = new HashSet<>();
-        if (n == 1) {
-            return 1;
-        }
-    
-        for (int i = 1; i <= (int) Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                divisors.add(i);
-                divisors.add(n / i);
-            }
-        }
-        
-        int answer = sumAll(divisors);
-        
+        int answer = getAnswer(n);
         return answer;
     }
     
-    public int sumAll (Set<Integer> divisors) {
+    private int getAnswer(int n) {
         int sum = 0;
-        
-        for (Integer divisor : divisors) {
-            sum += divisor;
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {
+                int divide = n / i;
+                if (i != divide) {
+                   sum += divide; 
+                }
+                sum += i; 
+            }
         }
+        
         return sum;
     }
 }
